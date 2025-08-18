@@ -8,13 +8,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #2c6e9e;
-            --secondary: #4a9ec7;
+            --primary: #4a9ec7;
+            --secondary: #6bafda;
             --accent: #ff6b6b;
             --light: #f8f9fa;
             --dark: #343a40;
             --gray: #6c757d;
             --success: #28a745;
+            --shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         }
 
         * {
@@ -56,7 +57,7 @@
             text-decoration: none;
             cursor: pointer;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(44, 110, 158, 0.2);
+            box-shadow: 0 4px 15px rgba(74, 158, 199, 0.2);
             position: relative;
             overflow: hidden;
         }
@@ -64,7 +65,7 @@
         .btn:hover {
             background: var(--secondary);
             transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(44, 110, 158, 0.3);
+            box-shadow: 0 6px 20px rgba(74, 158, 199, 0.3);
         }
 
         .btn:active {
@@ -84,6 +85,17 @@
 
         .btn:hover::after {
             left: 100%;
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-outline:hover {
+            background: var(--primary);
+            color: white;
         }
 
         /* Header & Banner */
@@ -137,6 +149,33 @@
             color: var(--primary);
         }
 
+        .nav-icons {
+            display: flex;
+            align-items: center;
+        }
+
+        .cart-icon {
+            position: relative;
+            margin-left: 20px;
+            cursor: pointer;
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: var(--accent);
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
         .hero {
             padding: 150px 0 100px;
             background: linear-gradient(135deg, #f5f7fa 0%, #e4edf5 100%);
@@ -182,25 +221,73 @@
             color: var(--gray);
         }
 
+        .hero-buttons {
+            display: flex;
+            gap: 15px;
+        }
+
         .hero-image {
             flex: 1;
             text-align: center;
             position: relative;
-        }
-
-        .hero-image img {
-            max-width: 100%;
+            overflow: hidden;
             border-radius: 10px;
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
-            animation: camera-move 20s infinite linear;
+            height: 500px;
+        }
+
+        .camera-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .camera-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://github.com/Sergogithab/-.-/blob/main/eClear-Sprzatanie-Biur-scaled.jpeg?raw=true') center/cover no-repeat;
+            animation: camera-move 35s infinite linear;
+            transform-origin: center center;
         }
 
         @keyframes camera-move {
-            0% { transform: translate(0, 0); }
-            25% { transform: translate(20px, 20px); }
-            50% { transform: translate(0, 40px); }
-            75% { transform: translate(-20px, 20px); }
-            100% { transform: translate(0, 0); }
+            0% { 
+                transform: translate(0, 0) scale(1); 
+            }
+            10% { 
+                transform: translate(50px, 25px) scale(1.05); 
+            }
+            20% { 
+                transform: translate(25px, 50px) scale(1.1); 
+            }
+            30% { 
+                transform: translate(-25px, 40px) scale(1.05); 
+            }
+            40% { 
+                transform: translate(-50px, -25px) scale(1.1); 
+            }
+            50% { 
+                transform: translate(0, -50px) scale(1.05); 
+            }
+            60% { 
+                transform: translate(40px, -40px) scale(1.1); 
+            }
+            70% { 
+                transform: translate(50px, 0) scale(1.05); 
+            }
+            80% { 
+                transform: translate(0, 50px) scale(1.1); 
+            }
+            90% { 
+                transform: translate(-40px, 25px) scale(1.05); 
+            }
+            100% { 
+                transform: translate(0, 0) scale(1); 
+            }
         }
 
         /* Section Styles */
@@ -256,7 +343,7 @@
             border-radius: 10px;
             padding: 30px;
             text-align: center;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            box-shadow: var(--shadow);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             position: relative;
             overflow: hidden;
@@ -310,7 +397,7 @@
             background: white;
             border-radius: 10px;
             overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            box-shadow: var(--shadow);
             transition: all 0.3s ease;
         }
 
@@ -372,7 +459,7 @@
             background: white;
             border-radius: 10px;
             padding: 25px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            box-shadow: var(--shadow);
             text-align: center;
             transition: transform 0.3s ease;
         }
@@ -384,13 +471,6 @@
         .contract-card h3 {
             color: var(--primary);
             margin-bottom: 15px;
-        }
-
-        .contract-card .amount {
-            font-size: 24px;
-            font-weight: 700;
-            color: var(--accent);
-            margin: 15px 0;
         }
 
         /* Gallery */
@@ -409,7 +489,7 @@
             overflow: hidden;
             position: relative;
             height: 300px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            box-shadow: var(--shadow);
         }
 
         .gallery-item img {
@@ -429,7 +509,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(44, 110, 158, 0.8);
+            background: rgba(74, 158, 199, 0.8);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -487,7 +567,7 @@
             background: white;
             padding: 30px;
             border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            box-shadow: var(--shadow);
         }
 
         .form-group {
@@ -557,6 +637,178 @@
             color: rgba(255, 255, 255, 0.7);
         }
 
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 800px;
+            max-height: 90vh;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .modal-header {
+            padding: 20px;
+            background: var(--primary);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .close-modal {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        .modal-body {
+            padding: 20px;
+            overflow-y: auto;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .price-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            flex-grow: 1;
+        }
+
+        .price-table th {
+            background: var(--primary);
+            color: white;
+            padding: 15px;
+            text-align: left;
+        }
+
+        .price-table td {
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .price-table tr:hover {
+            background: #f8f9fa;
+        }
+
+        .add-to-cart {
+            background: var(--success);
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .add-to-cart:hover {
+            background: #218838;
+        }
+
+        .cart-items {
+            margin-top: 20px;
+            flex-grow: 1;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .cart-total {
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 2px solid #eee;
+            font-size: 20px;
+            font-weight: bold;
+            text-align: right;
+        }
+
+        .cart-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .btn-secondary {
+            background: var(--gray);
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: #5a6268;
+        }
+
+        .fixed-footer {
+            position: sticky;
+            bottom: 0;
+            background: white;
+            padding: 20px;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+            border-top: 1px solid #eee;
+        }
+
+        .form-group-row {
+            display: flex;
+            gap: 15px;
+        }
+
+        .form-group-row .form-group {
+            flex: 1;
+        }
+
+        .quantity-control {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            margin-right: 10px;
+        }
+
+        .quantity-btn {
+            width: 30px;
+            height: 30px;
+            border: 1px solid #ddd;
+            border-radius: 50%;
+            background: white;
+            cursor: pointer;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .quantity-input {
+            width: 60px;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            text-align: center;
+        }
+
         /* Responsive */
         @media (max-width: 992px) {
             .hero-content {
@@ -576,6 +828,19 @@
             .hero-text p {
                 font-size: 18px;
             }
+            
+            .hero-buttons {
+                justify-content: center;
+            }
+            
+            .hero-image {
+                height: 400px;
+            }
+            
+            .form-group-row {
+                flex-direction: column;
+                gap: 0;
+            }
         }
 
         @media (max-width: 768px) {
@@ -594,6 +859,15 @@
             .hero-text h1 {
                 font-size: 32px;
             }
+            
+            .hero-image {
+                height: 300px;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
         }
     </style>
 </head>
@@ -610,6 +884,12 @@
                     <li><a href="#gallery">Работы</a></li>
                     <li><a href="#contacts">Контакты</a></li>
                 </ul>
+                <div class="nav-icons">
+                    <div class="cart-icon" id="cartIcon">
+                        <i class="fas fa-shopping-cart fa-lg"></i>
+                        <span class="cart-count" id="cartCount">0</span>
+                    </div>
+                </div>
             </nav>
         </div>
     </header>
@@ -621,10 +901,15 @@
                 <div class="hero-text">
                     <h1>Профессиональная уборка для вашего бизнеса и дома</h1>
                     <p>Быстрая, качественная и надежная клининговая служба с гарантией результата</p>
-                    <a href="#contacts" class="btn">Заказать уборку!</a>
+                    <div class="hero-buttons">
+                        <a href="#contacts" class="btn">Заказать уборку!</a>
+                        <a href="#" class="btn btn-outline" id="priceButton">Смотреть прайс</a>
+                    </div>
                 </div>
                 <div class="hero-image">
-                    <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=600&q=80" alt="Офис">
+                    <div class="camera-container">
+                        <div class="camera-video"></div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -790,23 +1075,15 @@
             <div class="contracts-grid">
                 <div class="contract-card">
                     <h3>ООО Территория кино</h3>
-                    <div class="amount">120 000 ₽</div>
-                    <p>Фиксированная стоимость</p>
                 </div>
                 <div class="contract-card">
                     <h3>ООО СВГ Ритейл</h3>
-                    <div class="amount">25 000 ₽</div>
-                    <p>Фиксированная стоимость</p>
                 </div>
                 <div class="contract-card">
                     <h3>ООО Легион</h3>
-                    <div class="amount">65 280 ₽</div>
-                    <p>Уборка административных и производственных помещений</p>
                 </div>
                 <div class="contract-card">
                     <h3>ООО Империал</h3>
-                    <div class="amount">409 685 ₽</div>
-                    <p>Автосельмаш и Дормаш</p>
                 </div>
             </div>
         </div>
@@ -932,35 +1209,387 @@
         </div>
     </footer>
 
+    <!-- Price Modal -->
+    <div class="modal" id="priceModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Прайс-лист услуг</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <table class="price-table">
+                    <thead>
+                        <tr>
+                            <th>Услуга</th>
+                            <th>Цена (₽)</th>
+                            <th>Количество</th>
+                            <th>Действие</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Ежедневная уборка офиса</td>
+                            <td>500</td>
+                            <td>
+                                <div class="quantity-control">
+                                    <button class="quantity-btn minus" data-service="Ежедневная уборка офиса">-</button>
+                                    <input type="number" class="quantity-input" value="1" min="1" data-service="Ежедневная уборка офиса">
+                                    <button class="quantity-btn plus" data-service="Ежедневная уборка офиса">+</button>
+                                </div>
+                            </td>
+                            <td><button class="add-to-cart" data-service="Ежедневная уборка офиса" data-price="500">Добавить</button></td>
+                        </tr>
+                        <tr>
+                            <td>Генеральная уборка</td>
+                            <td>1500</td>
+                            <td>
+                                <div class="quantity-control">
+                                    <button class="quantity-btn minus" data-service="Генеральная уборка">-</button>
+                                    <input type="number" class="quantity-input" value="1" min="1" data-service="Генеральная уборка">
+                                    <button class="quantity-btn plus" data-service="Генеральная уборка">+</button>
+                                </div>
+                            </td>
+                            <td><button class="add-to-cart" data-service="Генеральная уборка" data-price="1500">Добавить</button></td>
+                        </tr>
+                        <tr>
+                            <td>Уборка после ремонта</td>
+                            <td>2500</td>
+                            <td>
+                                <div class="quantity-control">
+                                    <button class="quantity-btn minus" data-service="Уборка после ремонта">-</button>
+                                    <input type="number" class="quantity-input" value="1" min="1" data-service="Уборка после ремонта">
+                                    <button class="quantity-btn plus" data-service="Уборка после ремонта">+</button>
+                                </div>
+                            </td>
+                            <td><button class="add-to-cart" data-service="Уборка после ремонта" data-price="2500">Добавить</button></td>
+                        </tr>
+                        <tr>
+                            <td>Уборка кухни</td>
+                            <td>800</td>
+                            <td>
+                                <div class="quantity-control">
+                                    <button class="quantity-btn minus" data-service="Уборка кухни">-</button>
+                                    <input type="number" class="quantity-input" value="1" min="1" data-service="Уборка кухни">
+                                    <button class="quantity-btn plus" data-service="Уборка кухни">+</button>
+                                </div>
+                            </td>
+                            <td><button class="add-to-cart" data-service="Уборка кухни" data-price="800">Добавить</button></td>
+                        </tr>
+                        <tr>
+                            <td>Уборка туалета</td>
+                            <td>600</td>
+                            <td>
+                                <div class="quantity-control">
+                                    <button class="quantity-btn minus" data-service="Уборка туалета">-</button>
+                                    <input type="number" class="quantity-input" value="1" min="1" data-service="Уборка туалета">
+                                    <button class="quantity-btn plus" data-service="Уборка туалета">+</button>
+                                </div>
+                            </td>
+                            <td><button class="add-to-cart" data-service="Уборка туалета" data-price="600">Добавить</button></td>
+                        </tr>
+                        <tr>
+                            <td>Мытье окон</td>
+                            <td>1000</td>
+                            <td>
+                                <div class="quantity-control">
+                                    <button class="quantity-btn minus" data-service="Мытье окон">-</button>
+                                    <input type="number" class="quantity-input" value="1" min="1" data-service="Мытье окон">
+                                    <button class="quantity-btn plus" data-service="Мытье окон">+</button>
+                                </div>
+                            </td>
+                            <td><button class="add-to-cart" data-service="Мытье окон" data-price="1000">Добавить</button></td>
+                        </tr>
+                        <tr>
+                            <td>Полировка полов</td>
+                            <td>1200</td>
+                            <td>
+                                <div class="quantity-control">
+                                    <button class="quantity-btn minus" data-service="Полировка полов">-</button>
+                                    <input type="number" class="quantity-input" value="1" min="1" data-service="Полировка полов">
+                                    <button class="quantity-btn plus" data-service="Полировка полов">+</button>
+                                </div>
+                            </td>
+                            <td><button class="add-to-cart" data-service="Полировка полов" data-price="1200">Добавить</button></td>
+                        </tr>
+                        <tr>
+                            <td>Уборка столов</td>
+                            <td>300</td>
+                            <td>
+                                <div class="quantity-control">
+                                    <button class="quantity-btn minus" data-service="Уборка столов">-</button>
+                                    <input type="number" class="quantity-input" value="1" min="1" data-service="Уборка столов">
+                                    <button class="quantity-btn plus" data-service="Уборка столов">+</button>
+                                </div>
+                            </td>
+                            <td><button class="add-to-cart" data-service="Уборка столов" data-price="300">Добавить</button></td>
+                        </tr>
+                        <tr>
+                            <td>Вывоз мусора</td>
+                            <td>400</td>
+                            <td>
+                                <div class="quantity-control">
+                                    <button class="quantity-btn minus" data-service="Вывоз мусора">-</button>
+                                    <input type="number" class="quantity-input" value="1" min="1" data-service="Вывоз мусора">
+                                    <button class="quantity-btn plus" data-service="Вывоз мусора">+</button>
+                                </div>
+                            </td>
+                            <td><button class="add-to-cart" data-service="Вывоз мусора" data-price="400">Добавить</button></td>
+                        </tr>
+                        <tr>
+                            <td>Уборка после мероприятий</td>
+                            <td>2000</td>
+                            <td>
+                                <div class="quantity-control">
+                                    <button class="quantity-btn minus" data-service="Уборка после мероприятий">-</button>
+                                    <input type="number" class="quantity-input" value="1" min="1" data-service="Уборка после мероприятий">
+                                    <button class="quantity-btn plus" data-service="Уборка после мероприятий">+</button>
+                                </div>
+                            </td>
+                            <td><button class="add-to-cart" data-service="Уборка после мероприятий" data-price="2000">Добавить</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <div class="cart-items" id="cartItems">
+                    <!-- Cart items will be added here dynamically -->
+                </div>
+                
+                <div class="fixed-footer">
+                    <div class="form-group-row">
+                        <div class="form-group">
+                            <label for="orderPhone">Телефон *</label>
+                            <input type="tel" id="orderPhone" placeholder="Введите ваш телефон">
+                        </div>
+                        <div class="form-group">
+                            <label for="orderEmail">Email</label>
+                            <input type="email" id="orderEmail" placeholder="Введите ваш email">
+                        </div>
+                    </div>
+                    <div class="cart-total" id="cartTotal">
+                        Итого: 0 ₽
+                    </div>
+                    <div class="cart-actions">
+                        <button class="btn btn-secondary" id="clearCart">Очистить корзину</button>
+                        <button class="btn" id="orderBtn">Оформить заказ</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cart Modal -->
+    <div class="modal" id="cartModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Ваша корзина</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div id="cartItemsModal">
+                    <!-- Cart items will be added here dynamically -->
+                </div>
+                <div class="cart-total" id="cartTotalModal">
+                    Итого: 0 ₽
+                </div>
+                <div class="form-group-row" style="margin-top: 20px;">
+                    <div class="form-group">
+                        <label for="cartPhone">Телефон *</label>
+                        <input type="tel" id="cartPhone" placeholder="Введите ваш телефон">
+                    </div>
+                    <div class="form-group">
+                        <label for="cartEmail">Email</label>
+                        <input type="email" id="cartEmail" placeholder="Введите ваш email">
+                    </div>
+                </div>
+                <div class="cart-actions">
+                    <button class="btn btn-secondary" id="closeCartModal">Продолжить покупку</button>
+                    <button class="btn" id="checkoutBtn">Оформить заказ</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script>
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
+        // Price modal functionality
+        const priceButton = document.getElementById('priceButton');
+        const priceModal = document.getElementById('priceModal');
+        const closeModalButtons = document.querySelectorAll('.close-modal');
+        const cartIcon = document.getElementById('cartIcon');
+        const cartModal = document.getElementById('cartModal');
+        const cartCount = document.getElementById('cartCount');
+        const cartItems = document.getElementById('cartItems');
+        const cartItemsModal = document.getElementById('cartItemsModal');
+        const cartTotal = document.getElementById('cartTotal');
+        const cartTotalModal = document.getElementById('cartTotalModal');
+        const clearCartBtn = document.getElementById('clearCart');
+        const orderBtn = document.getElementById('orderBtn');
+        const closeCartModal = document.getElementById('closeCartModal');
+        const checkoutBtn = document.getElementById('checkoutBtn');
+
+        let cart = [];
+
+        // Open price modal
+        priceButton.addEventListener('click', (e) => {
+            e.preventDefault();
+            priceModal.style.display = 'flex';
+        });
+
+        // Open cart modal
+        cartIcon.addEventListener('click', () => {
+            if (cart.length > 0) {
+                cartModal.style.display = 'flex';
+                updateCartModal();
+            }
+        });
+
+        // Close modals
+        closeModalButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                priceModal.style.display = 'none';
+                cartModal.style.display = 'none';
             });
         });
 
-        // Animation on scroll
-        const observerOptions = {
-            root: null,
-            rootMargin: '0px',
-            threshold: 0.1
-        };
+        // Close modals when clicking outside
+        window.addEventListener('click', (e) => {
+            if (e.target === priceModal) {
+                priceModal.style.display = 'none';
+            }
+            if (e.target === cartModal) {
+                cartModal.style.display = 'none';
+            }
+        });
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('animated');
+        // Add to cart functionality
+        document.querySelectorAll('.add-to-cart').forEach(button => {
+            button.addEventListener('click', () => {
+                const service = button.getAttribute('data-service');
+                const price = parseInt(button.getAttribute('data-price'));
+                const quantity = parseInt(button.closest('tr').querySelector('.quantity-input').value);
+                
+                // Add to cart
+                cart.push({ service, price, quantity });
+                updateCart();
+                
+                // Show confirmation
+                alert(`${service} добавлен в корзину`);
+            });
+        });
+
+        // Quantity control functionality
+        document.querySelectorAll('.quantity-btn.plus').forEach(button => {
+            button.addEventListener('click', () => {
+                const input = button.closest('.quantity-control').querySelector('.quantity-input');
+                input.value = parseInt(input.value) + 1;
+            });
+        });
+
+        document.querySelectorAll('.quantity-btn.minus').forEach(button => {
+            button.addEventListener('click', () => {
+                const input = button.closest('.quantity-control').querySelector('.quantity-input');
+                if (parseInt(input.value) > 1) {
+                    input.value = parseInt(input.value) - 1;
                 }
             });
-        }, observerOptions);
-
-        document.querySelectorAll('.advantage-card, .service-card, .gallery-item, .contract-card').forEach(el => {
-            observer.observe(el);
         });
+
+        // Update cart display
+        function updateCart() {
+            cartCount.textContent = cart.reduce((sum, item) => sum + item.quantity, 0);
+            
+            // Update cart in modal
+            if (cartItems) {
+                let total = 0;
+                cartItems.innerHTML = '';
+                
+                cart.forEach(item => {
+                    total += item.price * item.quantity;
+                    cartItems.innerHTML += `
+                        <div class="cart-item">
+                            <span>${item.service}</span>
+                            <span>${item.quantity} × ${item.price} ₽ = ${item.price * item.quantity} ₽</span>
+                        </div>
+                    `;
+                });
+                
+                cartTotal.textContent = `Итого: ${total} ₽`;
+            }
+        }
+
+        // Update cart modal
+        function updateCartModal() {
+            let total = 0;
+            cartItemsModal.innerHTML = '';
+            
+            cart.forEach(item => {
+                total += item.price * item.quantity;
+                cartItemsModal.innerHTML += `
+                    <div class="cart-item">
+                        <span>${item.service}</span>
+                        <span>${item.quantity} × ${item.price} ₽ = ${item.price * item.quantity} ₽</span>
+                    </div>
+                `;
+            });
+            
+            cartTotalModal.textContent = `Итого: ${total} ₽`;
+        }
+
+        // Clear cart
+        clearCartBtn.addEventListener('click', () => {
+            cart = [];
+            updateCart();
+            updateCartModal();
+        });
+
+        // Order validation and submission
+        orderBtn.addEventListener('click', () => {
+            const phone = document.getElementById('orderPhone').value.trim();
+            
+            if (!phone) {
+                alert('Пожалуйста, заполните поле телефона');
+                return;
+            }
+            
+            if (cart.length > 0) {
+                alert('Заказ оформлен! Мы свяжемся с вами в ближайшее время.');
+                cart = [];
+                updateCart();
+                updateCartModal();
+                priceModal.style.display = 'none';
+                document.getElementById('orderPhone').value = '';
+                document.getElementById('orderEmail').value = '';
+            } else {
+                alert('Корзина пуста');
+            }
+        });
+
+        closeCartModal.addEventListener('click', () => {
+            cartModal.style.display = 'none';
+        });
+
+        checkoutBtn.addEventListener('click', () => {
+            const phone = document.getElementById('cartPhone').value.trim();
+            
+            if (!phone) {
+                alert('Пожалуйста, заполните поле телефона');
+                return;
+            }
+            
+            if (cart.length > 0) {
+                alert('Заказ оформлен! Мы свяжемся с вами в ближайшее время.');
+                cart = [];
+                updateCart();
+                updateCartModal();
+                cartModal.style.display = 'none';
+                document.getElementById('cartPhone').value = '';
+                document.getElementById('cartEmail').value = '';
+            } else {
+                alert('Корзина пуста');
+            }
+        });
+
+        // Initialize cart
+        updateCart();
     </script>
 </body>
 </html>
